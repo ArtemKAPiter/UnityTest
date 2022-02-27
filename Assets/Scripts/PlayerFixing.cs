@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class PlayerFixing : MonoBehaviour
 {
-    public Material fixMaterial;//серый цвет
-    public ColorChanger script;//Скрипт с изменением цвета
-    public PlayerMoving script1;//Скрипт с движением персонажа
-
+    public Material fixMaterial;//gray color
+    public ColorChanger script;//script with color changing
+    public PlayerMoving script1;//script with person moving
     void Start()
     {
         
@@ -23,11 +22,11 @@ public class PlayerFixing : MonoBehaviour
     {
         if (other.tag == gameObject.tag)
         {
-            other.tag = "3";//тег столба, к которому прикоснулись приравниваем к 3
-            other.GetComponent<Renderer>().material = fixMaterial;//цвет столба, к которому прикоснулись меняем на серый 
-            script.Start();//Вызываем метод start для того чтобы он вызвал методы генерации чисел для случайного столба и случайного цвета
-            script.enabled = true;//включаем скрипт с изменением цвета
-            script1.goBack = true;//булевую переменную goBack из скрипта движения(PlayerMoving) делаем истингой , чтобы персонаж пошел обратно
+            other.tag = "3";//tag of pillar which we touched is 3
+            other.GetComponent<Renderer>().material = fixMaterial;//color of pillar which we touched is gray
+            script.Start();//calling start method, to generate pillar and color numbers
+            script.enabled = true;//enable script with color changing
+            script1.goBack = true;//boolean goBack from (PlayerMoving) we ar making true ,  to make the character go back 
         }
     }
 

@@ -4,50 +4,71 @@ using UnityEngine;
 
 public class PlayerMoving : MonoBehaviour
 {
-    public GameObject[] pillars;//ћассив на столбы
+    public GameObject[] pillars;//array on pillar
     private Transform target; 
-    public float speed = 1.0f;//—корость нашего персонажа, из-за public можно мен€ть пр€мо в инспекторе
-    Vector3 startPosition;//начальна€ позици€
-    float step;//ѕеременна€, назвал шагом
-    public bool goBack;//Ѕулева€ переменна€ goBack изначально ложна€, так как персонаж стоит на месте
-    private Quaternion _lookRotation;
-
+    public float speed;//our character speed
+    Vector3 startPosition;//our current state
+    float step;
+    public bool goBack;//boolean variable goBack at first is false, because person is standing
+    int myCharacter;
     void Start()
     {
-        startPosition = transform.position;//Ќаша начальна€ позици€
+        startPosition = transform.position;//our first position
         step = speed * Time.deltaTime;//
+        myCharacter = 2;
     }
 
     void Update()
     {
         target = transform;
-        if (goBack == true){ //≈сли булева€ переменна€ goBack истинна€ то вызываем метод MoveBack() и персонаж идет обратно
+        if (goBack == true){ // if boolean variable (goBack) is true we are calling method MoveBack() and charactar is going back
             MoveBack();
         }
 
-        for (int i = 0; i <= 2; i++)//“ут в цикле for получаем все наши 3 числа, от 0 до 2 и дальше делаем проверку
+        for (int i = 0; i <= 2; i++)// here we are getting numbers from 0 to 3 to our array
         {
-            if (pillars[i].tag == "0"|| pillars[i].tag == "2" && gameObject.tag=="1") {//ѕровер€ем, какой это из персонажей пойдет, тут с красным и с синим навыком
+            if (pillars[i].tag == "2" && gameObject.tag=="1") {//if pillar is blue is going first character
 
-                transform.position = Vector3.MoveTowards(transform.position, pillars[i].transform.position, step);//ƒвижение нашего персонажа, к столбу, который был вызван в массиве
-                    goBack = false;
+                transform.position = Vector3.MoveTowards(transform.position, pillars[i].transform.position, step);//our person moving to pillar
+                goBack = false;
 
             }
-            else if (pillars[i].tag == "0" || pillars[i].tag == "1" && gameObject.tag == "2") //ѕровер€ем, какой это из персонажей пойдет, тут с красным и с зеленым навыком
+            if (pillars[i].tag == "1" && gameObject.tag == "2") //if pillar is green is going second character 
             {
-
-                transform.position = Vector3.MoveTowards(transform.position, pillars[i].transform.position, step);//ƒвижение нашего персонажа, к столбу, который был вызван в массиве
-                    goBack = false;
-
+                transform.position = Vector3.MoveTowards(transform.position, pillars[i].transform.position, step);//our person moving to pillar
+                goBack = false;
             }
+            else
+            {
+                randomPlayer();
+            }
+
 
         }
     }
         
     
-    public void MoveBack()//ћетод дл€ возврашени€ обратно
+    public void MoveBack()//method to go back
     {
-        transform.position = Vector3.MoveTowards(transform.position, startPosition, step);//ћен€ем позицию персонажа, на ту, где он был изначально и передвигаемс€ со скоростью step
+        transform.position = Vector3.MoveTowards(transform.position, startPosition, step);//we are changing our character position an it is going back 
+            }
+    void randomPlayer()
+    {
+        Debug.Log(myCharacter);
+        for (int i = 0; i <= 2; i++)
+        {
+            
+                if (pillars[i].tag == "0" && gameObject.tag == myCharacter.ToString())// if pillar color is red character to fix is random character which is calling with method callRandomPerson
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, pillars[i].transform.position, step);
+                    goBack = false;
+               
 
-    }
-}
+                }
+            }
+           
+           
+        }
+        }
+    
+

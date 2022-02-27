@@ -902,7 +902,7 @@ MonoBehaviour:
   - {fileID: 88477131}
   - {fileID: 345682766}
   - {fileID: 1716145542}
-  speed: 1
+  speed: 5
   goBack: 0
 --- !u!1 &963194225
 GameObject:
@@ -1045,7 +1045,7 @@ MonoBehaviour:
   - {fileID: 88477131}
   - {fileID: 345682766}
   - {fileID: 1716145542}
-  speed: 1
+  speed: 5
   goBack: 0
 --- !u!23 &1472246547
 MeshRenderer:

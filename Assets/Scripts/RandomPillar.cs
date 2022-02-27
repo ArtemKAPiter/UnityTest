@@ -8,6 +8,6 @@ public class RandomPillar : MonoBehaviour
 
     public void RandomCall()
     {
-        randompillar = Random.Range(0, 3);//Генерируем число столба, который будет менять свой цвет
+        randompillar = Random.Range(0, 3);//generation of piller number
     }
 }
